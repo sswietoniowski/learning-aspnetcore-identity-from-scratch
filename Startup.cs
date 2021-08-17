@@ -12,6 +12,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using IdentityApp.Models;
+using IdentityApp.Services;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace IdentityApp
 {
@@ -39,6 +41,7 @@ namespace IdentityApp
                     opts => opts.MigrationsAssembly("IdentityApp")
                 );
             });
+            services.AddScoped<IEmailSender, ConsoleEmailSender>();
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<IdentityDbContext>();
         }
