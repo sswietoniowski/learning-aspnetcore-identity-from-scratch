@@ -76,3 +76,14 @@ dotnet user-secrets init
 dotnet user-secrets set "Twitter:ApiKey" "<client-id>"
 dotnet user-secrets set "Twitter:ApiSecret" "<client-secret>"
 
+## Adapting Identity UI
+
+dotnet tool uninstall --global dotnet-aspnet-codegenerator
+dotnet tool install --global dotnet-aspnet-codegenerator --version 5.0.0
+
+dotnet aspnet-codegenerator identity --listFiles
+
+libman install font-awesome@5.15.1 -d wwwroot/lib/font-awesome
+
+dotnet aspnet-codegenerator identity --dbContext Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext --files Account.Login
+dotnet aspnet-codegenerator identity --dbContext Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext --files Account.Register
