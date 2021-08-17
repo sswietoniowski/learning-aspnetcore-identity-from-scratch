@@ -56,8 +56,16 @@ Account/AccessDenied
 
 # External authenticator
 
+## Facebook
+
 https://developers.facebook.com/apps
 
 dotnet user-secrets init
 dotnet user-secrets set "Facebook:AppId" "<app-id>"
 dotnet user-secrets set "Facebook:AppSecret" "<app-secret>"
+
+## Google
+
+dotnet user-secrets init
+dotnet user-secrets set "Google:ClientId" "<client-id>"
+dotnet user-secrets set "Google:ClientSecret" "<client-secret>"
