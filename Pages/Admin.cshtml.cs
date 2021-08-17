@@ -1,8 +1,11 @@
 ﻿using IdentityApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Authorization;
+
 namespace IdentityApp.Pages
 {
+    [Authorize(Roles = "Admin")]
     public class AdminModel : PageModel
     {
         public AdminModel(ProductDbContext ctx) => DbContext = ctx;
