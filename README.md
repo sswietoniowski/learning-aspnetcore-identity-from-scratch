@@ -53,3 +53,11 @@ Account/Manage/PersonalData
 Account/Manage/DownloadPersonalData
 Account/Manage/DeletePersonalData
 Account/AccessDenied
+
+# External authenticator
+
+https://developers.facebook.com/apps
+
+dotnet user-secrets init
+dotnet user-secrets set "Facebook:AppId" "<app-id>"
+dotnet user-secrets set "Facebook:AppSecret" "<app-secret>"

@@ -51,6 +51,11 @@ namespace IdentityApp
                     options.SignIn.RequireConfirmedAccount = true;
                 })
                 .AddEntityFrameworkStores<IdentityDbContext>();
+            services.AddAuthentication()
+                .AddFacebook(options => {
+                    options.AppId = Configuration["Facebook:AppId"];
+                    options.AppSecret = Configuration["Facebook:AppSecret"];
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
