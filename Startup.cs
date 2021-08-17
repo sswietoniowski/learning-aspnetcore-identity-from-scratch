@@ -59,11 +59,11 @@ namespace IdentityApp
                 .AddGoogle(options => {
                     options.ClientId = Configuration["Google:ClientId"];
                     options.ClientSecret = Configuration["Google:ClientSecret"];
-                })
-                .AddTwitter(options => {
-                options.ConsumerKey = Configuration["Twitter:ApiKey"];
-                options.ConsumerSecret = Configuration["Twitter:ApiSecret"];
                 });
+                //.AddTwitter(options => {
+                //options.ConsumerKey = Configuration["Twitter:ApiKey"];
+                //options.ConsumerSecret = Configuration["Twitter:ApiSecret"];
+                //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
