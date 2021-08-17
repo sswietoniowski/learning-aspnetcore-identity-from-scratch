@@ -56,9 +56,13 @@ namespace IdentityApp
                     options.AppId = Configuration["Facebook:AppId"];
                     options.AppSecret = Configuration["Facebook:AppSecret"];
                 })
-                .AddGoogle(opts => {
-                    opts.ClientId = Configuration["Google:ClientId"];
-                    opts.ClientSecret = Configuration["Google:ClientSecret"];
+                .AddGoogle(options => {
+                    options.ClientId = Configuration["Google:ClientId"];
+                    options.ClientSecret = Configuration["Google:ClientSecret"];
+                })
+                .AddTwitter(options => {
+                options.ConsumerKey = Configuration["Twitter:ApiKey"];
+                options.ConsumerSecret = Configuration["Twitter:ApiSecret"];
                 });
         }
 

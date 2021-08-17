@@ -69,3 +69,10 @@ dotnet user-secrets set "Facebook:AppSecret" "<app-secret>"
 dotnet user-secrets init
 dotnet user-secrets set "Google:ClientId" "<client-id>"
 dotnet user-secrets set "Google:ClientSecret" "<client-secret>"
+
+## Tweeter
+
+dotnet user-secrets init
+dotnet user-secrets set "Twitter:ApiKey" "<client-id>"
+dotnet user-secrets set "Twitter:ApiSecret" "<client-secret>"
+
