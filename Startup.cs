@@ -51,7 +51,10 @@ namespace IdentityApp
                     options.Password.RequireNonAlphanumeric = false;
                     options.SignIn.RequireConfirmedAccount = true;
                 })
-                .AddEntityFrameworkStores<IdentityDbContext>();
+                .AddEntityFrameworkStores<IdentityDbContext>()
+                .AddDefaultTokenProviders();
+            services.AddScoped<TokenUrlEncoderService>();
+            services.AddScoped<IdentityEmailService>(); ;
             services.AddAuthentication()
                 .AddFacebook(options => {
                     options.AppId = Configuration["Facebook:AppId"];
