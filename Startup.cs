@@ -75,6 +75,7 @@ namespace IdentityApp
                 opts.LoginPath = "/Identity/SignIn";
                 opts.LogoutPath = "/Identity/SignOut";
                 opts.AccessDeniedPath = "/Identity/Forbidden";
+                opts.Events.DisableRedirectionForApiClients();
             });
         }
 
