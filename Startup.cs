@@ -77,6 +77,14 @@ namespace IdentityApp
                 opts.AccessDeniedPath = "/Identity/Forbidden";
                 opts.Events.DisableRedirectionForApiClients();
             });
+            services.AddCors(opts => {
+                opts.AddDefaultPolicy(builder => {
+                    builder.WithOrigins("http://localhost:5100")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -89,6 +97,7 @@ namespace IdentityApp
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseCors();
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
