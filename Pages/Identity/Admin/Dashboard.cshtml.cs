@@ -24,6 +24,8 @@ namespace IdentityApp.Pages.Identity.Admin
         public void OnGet()
         {
             UsersCount = UserManager.Users.Count();
+            UsersUnconfirmed = UserManager.Users
+                .Where(u => !u.EmailConfirmed).Count();
         }
 
         public async Task<IActionResult> OnPostAsync()
