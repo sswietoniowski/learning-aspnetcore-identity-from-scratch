@@ -64,6 +64,11 @@ namespace IdentityApp
                 //options.ConsumerKey = Configuration["Twitter:ApiKey"];
                 //options.ConsumerSecret = Configuration["Twitter:ApiSecret"];
                 //});
+            services.ConfigureApplicationCookie(opts => {
+                opts.LoginPath = "/Identity/SignIn";
+                opts.LogoutPath = "/Identity/SignOut";
+                opts.AccessDeniedPath = "/Identity/Forbidden";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
