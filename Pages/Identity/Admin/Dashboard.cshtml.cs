@@ -3,14 +3,20 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.Linq;
+using Microsoft.Extensions.Configuration;
 
 namespace IdentityApp.Pages.Identity.Admin
 {
     public class DashboardModel : AdminPageModel
     {
-        public DashboardModel(UserManager<IdentityUser> userMgr)
-            => UserManager = userMgr;
+        public DashboardModel(UserManager<IdentityUser> userMgr,
+            IConfiguration configuration)
+        {
+            UserManager = userMgr;
+            DashboardRole = configuration["Dashboard:Role"] ?? "Dashboard";
+        }
         public UserManager<IdentityUser> UserManager { get; set; }
+        public string DashboardRole { get; set; }
 
         public int UsersCount { get; set; } = 0;
         public int UsersUnconfirmed { get; set; } = 0;
@@ -35,8 +41,13 @@ namespace IdentityApp.Pages.Identity.Admin
         {
             foreach (IdentityUser existingUser in UserManager.Users.ToList())
             {
-                IdentityResult result = await UserManager.DeleteAsync(existingUser);
-                result.Process(ModelState);
+                if (emails.Contains(existingUser.Email) ||
+                    !await UserManager.IsInRoleAsync(existingUser, DashboardRole))
+                {
+                    IdentityResult result
+                        = await UserManager.DeleteAsync(existingUser);
+                    result.Process(ModelState);
+                }
             }
 
             foreach (string email in emails)
