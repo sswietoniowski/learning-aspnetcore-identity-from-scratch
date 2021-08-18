@@ -89,3 +89,9 @@ dotnet aspnet-codegenerator identity --dbContext Microsoft.AspNetCore.Identity.E
 dotnet aspnet-codegenerator identity --dbContext Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext --files Account.Register
 
 dotnet aspnet-codegenerator identity --dbContext Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext --files "Account.Manage._Layout;Account.Manage._ManageNav"
+
+# Testing the Authentication API
+
+Run from wwwroot:
+
+npx http-server -p 5100 -c-1
