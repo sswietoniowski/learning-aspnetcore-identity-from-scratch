@@ -14,6 +14,9 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using IdentityApp.Models;
 using IdentityApp.Services;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace IdentityApp
 {
@@ -66,6 +69,12 @@ namespace IdentityApp
                 .AddGoogle(options => {
                     options.ClientId = Configuration["Google:ClientId"];
                     options.ClientSecret = Configuration["Google:ClientSecret"];
+                }).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, opts => {
+                    opts.TokenValidationParameters.ValidateAudience = false;
+                    opts.TokenValidationParameters.ValidateIssuer = false;
+                    opts.TokenValidationParameters.IssuerSigningKey
+                        = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+                            Configuration["BearerTokens:Key"]));
                 });
                 //.AddTwitter(options => {
                 //options.ConsumerKey = Configuration["Twitter:ApiKey"];
