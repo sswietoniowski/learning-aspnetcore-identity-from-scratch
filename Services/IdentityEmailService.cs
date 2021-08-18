@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Routing;
+using System.Threading.Tasks;
+
 namespace IdentityApp.Services
 {
     public class IdentityEmailService
@@ -28,6 +30,15 @@ namespace IdentityApp.Services
             string safeToken = TokenEncoder.EncodeToken(token);
             return LinkGenerator.GetUriByPage(ContextAccessor.HttpContext, page,
                 null, new { email = emailAddress, token = safeToken });
+        }
+
+        public async Task SendPasswordRecoveryEmail(IdentityUser user,
+            string confirmationPage)
+        {
+            string token = await UserManager.GeneratePasswordResetTokenAsync(user);
+            string url = GetUrl(user.Email, token, confirmationPage);
+            await EmailSender.SendEmailAsync(user.Email, "Set Your Password",
+                $"Please set your password by <a href={url}>clicking here</a>.");
         }
     }
 }
