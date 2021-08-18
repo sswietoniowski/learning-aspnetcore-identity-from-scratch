@@ -32,6 +32,7 @@ namespace IdentityApp.Pages.Identity.Admin
             await UserManager.SetLockoutEnabledAsync(user, true);
             await UserManager.SetLockoutEndDateAsync(user,
                 DateTimeOffset.Now.AddDays(5));
+            await UserManager.UpdateSecurityStampAsync(user);
             return RedirectToPage();
         }
         public async Task<IActionResult> OnPostUnlockAsync(string id)

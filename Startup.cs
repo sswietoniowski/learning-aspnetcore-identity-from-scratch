@@ -53,6 +53,9 @@ namespace IdentityApp
                 })
                 .AddEntityFrameworkStores<IdentityDbContext>()
                 .AddDefaultTokenProviders();
+            services.Configure<SecurityStampValidatorOptions>(opts => {
+                opts.ValidationInterval = System.TimeSpan.FromMinutes(1);
+            });
             services.AddScoped<TokenUrlEncoderService>();
             services.AddScoped<IdentityEmailService>(); ;
             services.AddAuthentication()
