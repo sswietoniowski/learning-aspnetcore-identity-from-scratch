@@ -42,7 +42,7 @@ namespace IdentityApp
                 );
             });
             services.AddScoped<IEmailSender, ConsoleEmailSender>();
-            services.AddDefaultIdentity<IdentityUser>(options =>
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
                 {
                     options.Password.RequiredLength = 8;
                     options.Password.RequireDigit = false;
