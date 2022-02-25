@@ -1,4 +1,8 @@
-﻿# Useful commands
+# Learning ASP.NET Core - Identity From Scratch
+ 
+Small demo of how ASP.NET Core Identity can be used.
+ 
+# Useful commands
 
 dotnet new globaljson --sdk-version 5.0.400 --output IdentityTodo
 dotnet new webapp --auth Individual --use-local-db true --output IdentityTodo --framework net5.0
